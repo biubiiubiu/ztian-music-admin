@@ -8,7 +8,7 @@ const message = ref("ZTian音乐管理后台")
 
 const hi = () => {
   sayHello().then(response => {
-    // console.log(response.data)
+    console.log(response.data)
     message.value = response.data
   })
 }
