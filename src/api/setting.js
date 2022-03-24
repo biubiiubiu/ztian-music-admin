@@ -1,5 +1,5 @@
-import { get } from './request.js';
-
-export const getSiteSetting = () => {
-  return get('/settings/site');
-};
+// import { get } from './request.js';
+//
+// export const getSiteSetting = () => {
+//   return get('/settings/site');
+// };
