@@ -1,7 +1,7 @@
 <template>
   <div class="login-page">
     <q-card class="login-form-content">
-      <div class="title">ZTian音乐后台</div>
+      <div class="title">ZtianMusic后台</div>
       <q-form class="q-gutter-md" @submit="onSubmit(username, password)">
         <q-input
           filled
@@ -39,7 +39,6 @@
 import { ref } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute, useRouter } from 'vue-router';
-import { useQuasar } from 'quasar';
 
 export default {
   name: 'Login',
@@ -50,14 +49,9 @@ export default {
     const store = useStore();
     const router = useRouter();
     const route = useRoute();
-
-    const $q = useQuasar();
-
     const onSubmit = (username, password) => {
       store.dispatch('user/login', { username, password }).then(() => {
-        store.dispatch('user/fetchCurrentUser').then(() => {
-          router.push({ path: route.query.redirect || '/' });
-        });
+        router.push({ path: route.query.redirect || '/' });
       });
     };
     return {
@@ -85,7 +79,6 @@ export default {
       text-align: center;
       margin-bottom: 50px;
     }
-
     width: 400px;
     padding: 20px;
   }
