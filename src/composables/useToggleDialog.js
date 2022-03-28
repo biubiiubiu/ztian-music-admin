@@ -1,14 +1,9 @@
-// export const useToggleDialog = show => {
-//     const hideDialog = () => {
-//         show.value = false;
-//     };
-//
-//     const showDialog = () => {
-//         show.value = true;
-//     };
-//
-//     return {
-//         showDialog,
-//         hideDialog
-//     };
-// };
+export const useToggleDialog = show => {
+    const toggleDialog = () => {
+        show.value = !show.value;
+    };
+
+    return {
+        toggleDialog
+    };
+};
