@@ -1,4 +1,4 @@
-import { post } from './request';
+import { get, post } from './request';
 
 export const search = paging => {
     return get('/users/', { params: paging });
@@ -9,7 +9,5 @@ export const me = () => {
 };
 
 export const create = user => {
-    return post('/users');
+    return post('/users', user);
 };
-
-
