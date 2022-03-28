@@ -1,50 +1,76 @@
-<!--<template>-->
-<!--  <div class="page">-->
-<!--    <div class="q-mt-md q-mb-md">-->
-<!--      <q-btn color="primary" label="添加用户" @click="showDialog" />-->
-<!--    </div>-->
-<!--    <q-table-->
-<!--        :rows="data"-->
-<!--        :columns="columns"-->
-<!--        row-key="name"-->
-<!--        @request="fetchData"-->
-<!--        v-model:pagination="pagination"-->
-<!--    />-->
-<!--    <create-dialog v-if="show" @hide="hideDialog" @create-success="fetchData" />-->
-<!--  </div>-->
-<!--</template>-->
+<template>
+  <div class="page">
+    <div class="q-mt-md q-mb-md">
+      <q-btn color="primary" label="添加用户" />
+    </div>
+    <q-table :rows="data" :columns="columns" row-key="name" hide-pagination />
+    <div class="row justify-center q-mt-md">
+      <q-pagination
+          v-model="pagination.page"
+          color="grey-8"
+          :max="pagesNumber"
+          size="sm"
+      />
+    </div>
+  </div>
+</template>
 
-<!--<script setup>-->
-<!--import { useUserSearch } from '../../composables/useUserSearch.js';-->
-<!--import { useToggleDialog } from '../../composables/useToggleDialog.js';-->
-<!--import CreateDialog from './CreateDialog.vue';-->
-<!--import { ref } from 'vue';-->
+<script>
+import { ref, computed } from 'vue';
+import { search } from '../../api/user.js';
 
-<!--const columns = [-->
-<!--  {-->
-<!--    label: 'ID',-->
-<!--    field: 'id'-->
-<!--  },-->
-<!--  {-->
-<!--    field: 'username',-->
-<!--    label: '用户名'-->
-<!--  },-->
-<!--  {-->
-<!--    field: 'nickname',-->
-<!--    label: '昵称'-->
-<!--  }-->
-<!--];-->
+export default {
+  name: 'Index',
+  setup() {
+    const columns = [
+      {
+        label: 'ID',
+        field: 'id'
+      },
+      {
+        field: 'username',
+        label: '用户名'
+      },
+      {
+        field: 'nickname',
+        label: '昵称'
+      }
+    ];
 
-<!--const show = ref(false);-->
+    const data = ref([]);
 
-<!--const { showDialog, hideDialog } = useToggleDialog(show);-->
+    const fetchData = () => {
+      search({ page: 0 }).then(res => {
+        console.log(res.data);
 
-<!--const pagination = ref({-->
-<!--  page: 1,-->
-<!--  rowsPerPage: 10-->
-<!--});-->
+        data.value = data.value.concat(res.data.content);
+        pagination.value.page = res.data.number + 1;
+        pagination.value.rowsPerPage = res.data.size;
+        pagination.value.rowsNumber = res.data.totalElements;
+      });
+    };
 
-<!--const { data, fetchData } = useUserSearch(pagination);-->
-<!--</script>-->
+    fetchData();
 
-<!--<style scoped></style>-->
+    const pagination = ref({
+      page: 2,
+      rowsPerPage: 10,
+      rowsNumber: 10
+    });
+
+    const rows = [];
+
+    return {
+      columns,
+      pagination,
+      rows,
+      pagesNumber: computed(() =>
+          Math.ceil(rows.length / pagination.value.rowsPerPage)
+      ),
+      data
+    };
+  }
+};
+</script>
+
+<style scoped></style>

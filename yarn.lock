@@ -6,6 +6,8 @@
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@antfu/utils/-/utils-0.5.0.tgz#b3169429997cb87850e543cb74660f9e2fed7efd"
   integrity sha512-MrAQ/MrPSxbh1bBrmwJjORfJymw4IqSHFBXqvxaga3ZdDM+/zokYF8DjyJpSjY2QmpmgQrajDUBJOWrYeARfzA==
+  dependencies:
+    "@types/throttle-debounce" "^2.1.0"
 
 "@babel/parser@^7.16.4":
   version "7.17.3"
