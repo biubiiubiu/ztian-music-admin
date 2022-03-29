@@ -10,8 +10,10 @@
   "dependencies": {
     "@quasar/extras": "^1.13.0",
     "axios": "^0.26.0",
+    "cos-js-sdk-v5": "^1.3.5",
     "cors": "^2.8.5",
     "js-cookie": "^3.0.1",
+    "md5": "^2.3.0",
     "quasar": "^2.5.5",
     "vue": "^3.2.25",
     "vue-router": "4",
