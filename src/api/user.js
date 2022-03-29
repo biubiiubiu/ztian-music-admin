@@ -1,15 +1,16 @@
-import { get } from './request';
+import { get, post } from './request';
 
-// export const login = (username, password) => {
-//     return post('/login', { username, password });
-// };
-
+// 所有用户信息
 export const search = paging => {
     return get('/users/', { params: paging });
 };
 
+// 当前用户信息
 export const me = () => {
     return get('/users/me');
 };
 
-
+// 创建新用户
+export const create = user => {
+    return post('/users', user);
+};
