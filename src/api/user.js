@@ -1,16 +1,24 @@
 import { get, post } from './request';
 
 // 所有用户信息
-export const search = paging => {
+const search = paging => {
     return get('/users/', { params: paging });
 };
 
 // 当前用户信息
-export const me = () => {
+const me = () => {
     return get('/users/me');
 };
 
 // 创建新用户
-export const create = user => {
+const create = user => {
     return post('/users', user);
 };
+
+export default {
+    create,
+    me,
+    search
+};
+
+
