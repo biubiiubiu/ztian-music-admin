@@ -40,10 +40,10 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue';
-import artistApi from '../../api/artist.js';
-import notify from '../../utils/notify.js';
-import Uploader from '../../components/Uploader.vue';
+import { reactive, ref } from "vue";
+import artistApi from "../../api/artist.js";
+import notify from "../../utils/notify.js";
+import Uploader from "../../components/Uploader.vue";
 
 const props = defineProps({
   data: {
@@ -58,9 +58,9 @@ const show = ref(true);
 
 const isEdit = ref(Boolean(props.data));
 
-const artist = reactive(props.data || { name: '', remark: '', photo: null });
+const artist = reactive(props.data || { name: "", remark: "", photo: null });
 
-const emmit = defineEmits(['create-success', 'edit-success']);
+const emmit = defineEmits(["create-success", "edit-success"]);
 
 const createArtist = () => {
   artistApi
@@ -72,7 +72,7 @@ const createArtist = () => {
     .then(createdArtist => {
       show.value = false;
       notify.success(`歌手《${createdArtist.name}》创建成功！`);
-      emmit('create-success');
+      emmit("create-success");
     });
 };
 
@@ -86,7 +86,7 @@ const editArtist = () => {
     .then(updatedArtist => {
       show.value = false;
       notify.success(`歌手《${updatedArtist.name}》更新成功！`);
-      emmit('edit-success');
+      emmit("edit-success");
     });
 };
 </script>

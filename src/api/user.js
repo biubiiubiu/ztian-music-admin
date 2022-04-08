@@ -16,9 +16,9 @@ const create = user => {
 };
 
 export default {
+    search,
     create,
-    me,
-    search
+    me
 };
 
 

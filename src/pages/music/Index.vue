@@ -93,6 +93,11 @@ const columns = [
     label: '歌曲名'
   },
   {
+    name: 'artistList',
+    field: 'artistList',
+    label: '歌手'
+  },
+  {
     name: 'description',
     field: 'description',
     label: '简介'
